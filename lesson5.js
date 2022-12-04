@@ -48,26 +48,27 @@ let obj = {
     music: [2, 2, 6],
     english: [4, 4, 3],
     portry: [5, 3, 4],
-    chemistry: [2],
+    chemistry: [],
     french: [4, 4]
 }
-console.log(obj)
+
 
 function getAverageScore(obj) {
     let averageSubjects = {};
     let sumAll = 0;
     let countAll = 0;
-    for ( let subject in Object.keys(obj)) {
+    for ( let subject of Object.keys(obj)) {
         let sum = 0;
         for (let i = 0; i < obj[subject].length; i++) {
-            console.log(obj[subject].length)
             sum += obj[subject][i];
             sumAll += obj[subject][i];
             countAll += 1;
-        }
-        averageSubjects[subject] = sum / obj[subject].length;
+        } if (obj[subject].length === 0) {
+            averageSubjects[subject] = 0
+        } else {
+        averageSubjects[subject] = Math.round(sum / obj[subject].length);}
     }  
-    const averageAll = sumAll / countAll;
+    let averageAll = Math.round(sumAll / countAll);
     return {averageSubjects, averageAll}
 }
 console.log(getAverageScore(obj))
