@@ -59,7 +59,7 @@ function getAverageScore(obj) {
     let countAll = 0;
     for ( let subject in Object.keys(obj)) {
         let sum = 0;
-        for (let i = 0; i < subject(obj).length; i++) {
+        for (let i = 0; i < obj[subject].length; i++) {
             console.log(obj[subject].length)
             sum += obj[subject][i];
             sumAll += obj[subject][i];
