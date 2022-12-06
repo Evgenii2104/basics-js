@@ -31,7 +31,7 @@ class Weapon {
     }
 }
 
-//const sword = new Weapon('Старый меч', 20, 10, 1);
+//const sword = new Weapon('Старый меч', 20, 10, 1);    проверка методов
   
   //sword.takeDamage(5);
   //console.log(sword.durability); 
@@ -60,20 +60,47 @@ class Weapon {
   //console.log(bow.getDamage());
   //console.log(bow.isBroken());
 
-  const weapon = [
-    new Weapon('Рука', 1, Infinity, 1),
-    new Weapon('Лук', 10, 200, 3),
-    new Weapon('Меч', 25, 500, 1),
-    new Weapon('Нож', 5, 300, 1),
-    new Weapon('Посох', 8, 300,2)
-  ];
+  const weapon1 = new Weapon('Рука', 1, Infinity, 1);
+  const weapon2 = new Weapon('Лук', 10, 200, 3);
+  const weapon3 = new Weapon('Меч', 25, 500, 1);
+  const weapon4 = new Weapon('Нож', 5, 300, 1);
+  const weapon5 = new Weapon('Посох', 8, 300,2);
+  
+  console.log(weapon1, weapon2, weapon3, weapon4, weapon5)
 
-  console.log(weapon)
+  const bestWeapon1 = new Weapon('Длинный лук ' + weapon2.name, 15, weapon2.durability, 4);
+  const bestWeapon2 = new Weapon('Секира ' + weapon3.name, 27, 800, weapon3.range)
+  const bestWeapon3 = new Weapon('Посох Бури ' + weapon5.name, 10, weapon5.durability, 3)
 
-  const bestWeapon = [
-    new Weapon (this.name, this.attackLevel, this.durability, this.range),
-    new Weapon('Длинный лук' + this.name, 15, this.durability, 4),
-    new Weapon('Секира' + this.name, 27, 800, this.range),
-    new Weapon('Посох Бури' + this.name, 10, this.durability, 3)
-  ]
-  console.log(bestWeapon)
+  console.log(bestWeapon1, bestWeapon2, bestWeapon3);
+
+
+
+  //   задание  2
+
+
+class StudentLog {
+    constructor (name, lastName) {
+        this.name = name;
+        this.lastName = lastName
+    }
+    getName () {
+        console.log(`${this.name}  ${this.lastName}`)
+    } 
+    addGrade(grade, subject) {
+        this.grade = grade;
+        this.subject = subject;
+        if (this.grade >= 6 || this.grade <= 0 || isNaN(this.grade)) {
+            console.log(false, [this.grade].length = 0)
+        } if (this.grade >= 1 || this.grade <= 5) {
+            console.log(this.grade += 1)
+        }
+    }
+}
+
+const log = new StudentLog('Олег', 'Никифоров');
+console.log(log.getName());
+console.log(log.addGrade(3, 'algebra'));
+console.log(log.addGrade(4, 'algebra'));
+console.log(log.addGrade(5, 'algebra'))
+
