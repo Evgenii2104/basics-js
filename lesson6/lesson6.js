@@ -83,7 +83,8 @@ class StudentLog {
     constructor (name, lastName) {
         this.name = name;
         this.lastName = lastName;
-        this.mag = {} 
+        this.mag = {};
+        this.average = [] 
     }
     getName () {
         console.log(`${this.name}  ${this.lastName}`)
@@ -113,25 +114,20 @@ class StudentLog {
                 averageSubjects = summ / this.mag[subject].length
             }
                 console.log(averageSubjects)
-
+                const ave = this.average
+                ave.push(averageSubjects)
         }
     }
     getTotalAverage() {
-        console.log(subject)
-        let coutAll = 0;
         let summAll = 0;
         let allAverage = 0
-        for (let subject of this.mag) {
-            for (let i = 0; i < this.mag[subject].length; i++) {
-                coutAll += 1
-                summAll += this.mag[subject][i];
-                allAverage = summAll / coutAll
-            }
-        }
-
-                console.log(allAverage)
+        for (let i = 0; i < this.average.length; i++) {
+                summAll += this.average[i];
+                allAverage = summAll / this.average.length
+            } console.log(allAverage)
+        }         
     }
-}
+
 
 
 const log = new StudentLog('Олег', 'Никифоров');
