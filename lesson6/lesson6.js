@@ -82,25 +82,71 @@ class Weapon {
 class StudentLog {
     constructor (name, lastName) {
         this.name = name;
-        this.lastName = lastName
+        this.lastName = lastName;
+        this.mag = {} 
     }
     getName () {
         console.log(`${this.name}  ${this.lastName}`)
     } 
     addGrade(grade, subject) {
+        if (this.mag[subject] === undefined) {
+            this.mag[subject] = []}
+        const grades = this.mag[subject];
+        grades.push(grade);
         this.grade = grade;
-        this.subject = subject;
-        if (this.grade >= 6 || this.grade <= 0 || isNaN(this.grade)) {
-            console.log(false, [this.grade].length = 0)
-        } if (this.grade >= 1 || this.grade <= 5) {
-            console.log(this.grade += 1)
+        let sum = 0;
+        if (grade >= 6 || grade <= 0 || isNaN(grade)) {
+            console.log(false, grade = 0)
+        } if (grade >= 1 || grade <= 5) {
+            console.log(sum += this.mag[subject].length)   
         }
+    }
+    getAverageBySubject(subject) {
+        let averageSubjects = 0;
+        let summ = 0;
+        
+        if (this.mag[subject] === undefined) {
+            console.log(this.mag[subject] = 0)
+        } else {
+             for (let i = 0; i < this.mag[subject].length; i++) {
+                summ += this.mag[subject][i];
+                averageSubjects = summ / this.mag[subject].length
+            }
+                console.log(averageSubjects)
+
+        }
+    }
+    getTotalAverage() {
+        console.log(subject)
+        let coutAll = 0;
+        let summAll = 0;
+        let allAverage = 0
+        for (let subject of this.mag) {
+            for (let i = 0; i < this.mag[subject].length; i++) {
+                coutAll += 1
+                summAll += this.mag[subject][i];
+                allAverage = summAll / coutAll
+            }
+        }
+
+                console.log(allAverage)
     }
 }
 
+
 const log = new StudentLog('Олег', 'Никифоров');
+
 console.log(log.getName());
 console.log(log.addGrade(3, 'algebra'));
 console.log(log.addGrade(4, 'algebra'));
 console.log(log.addGrade(5, 'algebra'))
+console.log(log.addGrade(5, 'geometry'));
+console.log(log.addGrade(4, 'geometry'));
+
+
+console.log(log.getAverageBySubject('geometry'))
+console.log(log.getAverageBySubject('algebra')); 
+//console.log(log.getAverageBySubject('math')); 
+
+console.log(log.getTotalAverage());
 
