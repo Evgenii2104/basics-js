@@ -31,9 +31,6 @@ class Weapon {
           console.log(true)
       }
   }
-  getNames() {
-    console.log(this.name)
-  }
 }
 
 
@@ -51,9 +48,43 @@ const bestWeapon3 = new Weapon('Посох Бури ' + weapon5.name, 10, weapon
 
 //console.log(bestWeapon1, bestWeapon2, bestWeapon3);
 
-//console.log(getNames())
+const weapons = [weapon1, weapon2, weapon3, weapon4, weapon5, bestWeapon1, bestWeapon2, bestWeapon3];
 
+function getNames(weapons) {
+  return weapons.map((weapon) => {
+    return weapon.name;
+  });
+}
 
+function getCountReliableWeapons(durability) {
+  let sumDurability = weapons.filter(weapon => weapon.durability >= durability)
+  return sumDurability.length++
+}
+
+function hasReliableWeapons(durability) {
+  let sumDurability = weapons.filter(weapon => weapon.durability >= durability)
+  return ` есть ${sumDurability.length++} оружий прочней`
+
+}
+
+function getReliableWeaponsNames(durability) {
+  let sumDurability = weapons.filter(weapon => weapon.durability >= durability)
+  return sumDurability.map((weapon) => {
+    return weapon.name
+  })
+}
+
+function getTotalDamage(weapons) {
+  return weapons.reduce((acc, weapon) => {
+    return acc + weapon.attackLevel;
+  },0)
+}
+
+console.log(getNames(weapons));
+console.log(getCountReliableWeapons(300));
+console.log(hasReliableWeapons(300));
+console.log(getReliableWeaponsNames(300));
+console.log(getTotalDamage(weapons))
 
 // 2 задание
 
@@ -61,12 +92,6 @@ function sleep(milliseconds)
 {
   let e = new Date().getTime() + milliseconds;
   while (new Date().getTime() <= e) {}
-};
-console.log(sleep(15))
-
-let memory = {
-    arguments: [],
-    result: []
 };
 
 function sum(...args) {
@@ -76,11 +101,6 @@ function sum(...args) {
     }, 0);
   }; 
   
-   function memorize(sum, limit) {
-    limit < 5; 
-     sum() 
-   }
-
   function compareArrays( arr1, arr2) {
     return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
   }
@@ -91,11 +111,3 @@ function sum(...args) {
   console.log(compareArrays([1, 2, 3], [2, 3, 1]));
   console.log(compareArrays([8, 1, 2], [8, 1, 2]))
 
-
-
-  const mSum = memorize(sum, 5);
-
-  console.log(sum(3, 4, 6));
-  console.log(sum(5, 7, 6));
-  console.log(sum(2, 6, 6))
-  console.log(mSum)
