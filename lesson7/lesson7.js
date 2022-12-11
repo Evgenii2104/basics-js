@@ -111,3 +111,26 @@ function sum(...args) {
   console.log(compareArrays([1, 2, 3], [2, 3, 1]));
   console.log(compareArrays([8, 1, 2], [8, 1, 2]))
 
+
+function memorize(fn, limit) {
+  const memory = {
+    arg:[],
+    results:[]
+  };
+  //if (memory.length <= limit) {
+  return (...args) => {
+    const result = fn(...args);
+    memory.arg.push(args);
+    memory.results.push(result);
+    console.log(memory)
+    return result;
+  }
+}
+//}
+
+const mSum = memorize(sum, 5);
+//console.log(sum(3, 4));
+//console.log(memory)
+mSum(3, 4);
+mSum(6, 2);
+mSum(4, 7)
