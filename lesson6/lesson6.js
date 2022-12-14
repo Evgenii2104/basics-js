@@ -15,22 +15,70 @@ class Weapon {
     }
     getDamage() {
         if (this.durability === 0) {
-        console.log(this.attackLevel = 0);
+            return 0;
         } if (this.durability >= ((this.firstDurability / 100) * 30)) {
-            console.log(this.attackLevel)
+            return this.attackLevel;
         } if (this.durability < ((this.firstDurability / 100) * 30)) {
-            console.log(this.attackLevel / 2);
+            return this.attackLevel / 2;
         } 
     }
     isBroken() {
         if (this.durability > 0) {
-            console.log(false)
+            return false;
         } if (this.durability <= 0) {
-            console.log(true)
+            return true;
         }
     }
 }
 
+class Hand extends Weapon {
+    constructor(name, attackLevel, durability, range) {
+        super(name, attackLevel, durability, range);
+        
+    }
+}
+
+class Onion extends Weapon {
+    constructor(name, attackLevel, durability, range) {
+        super(name, attackLevel, durability, range);
+    }
+}
+
+class Sword extends Weapon {
+    constructor(name, attackLevel, durability, range) {
+        super(name, attackLevel, durability, range);
+    }
+}
+
+class Knife extends Weapon {
+    constructor(name, attackLevel, durability, range) {
+        super(name, attackLevel, durability, range);
+    }
+}
+
+class Staff extends Weapon {
+    constructor(name, attackLevel, durability, range) {
+        super(name, attackLevel, durability, range);
+    }
+}
+
+class LongOnion extends Onion {
+    constructor(name, attackLevel, durability, range) {
+        super(name, attackLevel, durability, range);
+    }
+} 
+
+class Ax extends Sword {
+    constructor(name, attackLevel, durability, range) {
+        super(name, attackLevel, durability, range);
+    }
+}
+
+class StaffStorm extends Staff {
+    constructor(name, attackLevel, durability, range) {
+        super(name, attackLevel, durability, range)
+    }
+}
 //const sword = new Weapon('Старый меч', 20, 10, 1);    проверка методов
   
   //sword.takeDamage(5);
@@ -60,20 +108,21 @@ class Weapon {
   //console.log(bow.getDamage());
   //console.log(bow.isBroken());
 
-  const weapon1 = new Weapon('Рука', 1, Infinity, 1);
-  const weapon2 = new Weapon('Лук', 10, 200, 3);
-  const weapon3 = new Weapon('Меч', 25, 500, 1);
-  const weapon4 = new Weapon('Нож', 5, 300, 1);
-  const weapon5 = new Weapon('Посох', 8, 300,2);
+  const weapon1 = new Hand('Рука', 1, Infinity, 1);
+  const weapon2 = new Onion('Лук', 10, 200, 3);
+  const weapon3 = new Sword('Меч', 25, 500, 1);
+  const weapon4 = new Knife('Нож', 5, 300, 1);
+  const weapon5 = new Staff('Посох', 8, 300,2);
   
   console.log(weapon1, weapon2, weapon3, weapon4, weapon5)
 
-  const bestWeapon1 = new Weapon('Длинный лук ' + weapon2.name, 15, weapon2.durability, 4);
-  const bestWeapon2 = new Weapon('Секира ' + weapon3.name, 27, 800, weapon3.range)
-  const bestWeapon3 = new Weapon('Посох Бури ' + weapon5.name, 10, weapon5.durability, 3)
+  const bestWeapon1 = new LongOnion('Длинный лук ', 15, weapon2.durability, 4);
+  const bestWeapon2 = new Ax('Секира ', 27, 800, weapon3.range)
+  const bestWeapon3 = new StaffStorm('Посох Бури ' , 10, weapon5.durability, 3)
 
   console.log(bestWeapon1, bestWeapon2, bestWeapon3);
 
+  
 
 
   //   задание  2
@@ -93,13 +142,11 @@ class StudentLog {
         if (this.mag[subject] === undefined) {
             this.mag[subject] = []}
         const grades = this.mag[subject];
-        grades.push(grade);
-        this.grade = grade;
-        let sum = 0;
         if (grade >= 6 || grade <= 0 || isNaN(grade)) {
-            console.log(false, grade = 0)
-        } if (grade >= 1 || grade <= 5) {
-            console.log(sum += this.mag[subject].length)   
+            return (false, grade = 0)
+        }  else (grade >= 1 || grade <= 5) 
+        {
+            return (this.mag[subject].length, grades.push(grade))   
         }
     }
     getAverageBySubject(subject) {
@@ -107,25 +154,33 @@ class StudentLog {
         let summ = 0;
         
         if (this.mag[subject] === undefined) {
-            console.log(this.mag[subject] = 0)
+            return(this.mag[subject] = 0);
         } else {
              for (let i = 0; i < this.mag[subject].length; i++) {
                 summ += this.mag[subject][i];
                 averageSubjects = summ / this.mag[subject].length
             }
-                console.log(averageSubjects)
                 const ave = this.average
                 ave.push(averageSubjects)
+                return averageSubjects
         }
     }
     getTotalAverage() {
         let summAll = 0;
-        let allAverage = 0
-        for (let i = 0; i < this.average.length; i++) {
-                summAll += this.average[i];
-                allAverage = summAll / this.average.length
-            } console.log(allAverage)
-        }         
+        let allAverage = 0;
+        let len = 0;
+        let summ = 0;
+        for (let subject of Object.keys(this.mag)) {
+        
+          for (let i = 0; i < this.mag[subject].length; i++) {
+                summ += this.mag[subject][i];
+        
+            } 
+            len += this.mag[subject].length;      
+        }   
+        allAverage = summ / len;
+        return allAverage
+    }    
     }
 
 
@@ -143,6 +198,7 @@ console.log(log.addGrade(4, 'geometry'));
 console.log(log.getAverageBySubject('geometry'))
 console.log(log.getAverageBySubject('algebra')); 
 //console.log(log.getAverageBySubject('math')); 
+//console.log(Object.values(log.mag))
 
 console.log(log.getTotalAverage());
 
