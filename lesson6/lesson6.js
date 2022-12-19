@@ -136,17 +136,17 @@ class StudentLog {
         this.average = [] 
     }
     getName () {
-        console.log(`${this.name}  ${this.lastName}`)
+        return (`${this.name}  ${this.lastName}`)
     } 
     addGrade(grade, subject) {
         if (this.mag[subject] === undefined) {
             this.mag[subject] = []}
         const grades = this.mag[subject];
         if (grade >= 6 || grade <= 0 || isNaN(grade)) {
-            return (false, grade = 0)
-        }  else (grade >= 1 || grade <= 5) 
-        {
-            return (this.mag[subject].length, grades.push(grade))   
+            return (false)
+        }  else {
+            grades.push(grade)
+            return (this.mag[subject].length)   
         }
     }
     getAverageBySubject(subject) {
@@ -166,7 +166,6 @@ class StudentLog {
         }
     }
     getTotalAverage() {
-        let summAll = 0;
         let allAverage = 0;
         let len = 0;
         let summ = 0;

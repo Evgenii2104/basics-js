@@ -58,12 +58,12 @@ function getNames(weapons) {
 
 function getCountReliableWeapons(durability) {
   let sumDurability = weapons.filter(weapon => weapon.durability >= durability)
-  return sumDurability.length++
+  return sumDurability.length
 }
 
 function hasReliableWeapons(durability) {
-  let sumDurability = weapons.filter(weapon => weapon.durability >= durability)
-  return ` есть ${sumDurability.length++} оружий прочней`
+  let sumDurability = weapons.some(weapon => weapon.durability >= durability)
+  return sumDurability
 
 }
 
