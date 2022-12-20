@@ -1,3 +1,5 @@
+
+
 class AlarmClock {
     constructor(temp) {
         this.alarmCollection = [{}];
@@ -7,7 +9,7 @@ class AlarmClock {
 
     addClock(time, fn, id) {
         if (id === undefined) {
-            throw new Error('error text');
+            throw 'error text';
         } if (id === this.timerId) {
             console.error()
         } else {
@@ -16,38 +18,68 @@ class AlarmClock {
 
     };
 
-    removeClock() {
-        clearInterval(this.timerId.filter(alarmClock => alarmClock.timerId = id))
-
+    removeClock(id) {
+        return this.alarmCollection.shift(this.alarmCollection.filter(alarmCollection => alarmCollection.id = id));
     };
 
     getCurrentFormattedTime() {
         let date = new Date()
-        let hours = date.getHours();
-        let mins = date.getMinutes();
-        let output = this.temp
-        .replace('hh', hours)
-        .replace('mm', mins);
-        if (hours < 10) hours = '0' + hours;
-        if (mins < 10) mins = '0' + mins;
-        console.log(output)
+        let hours = date.getHours().toString();
+        let mins = date.getMinutes().toString();
+        if (hours.length < 2) {
+            hours = '0' + hours;
+        }
+        if (mins.length < 2) {
+            mins = '0' + mins;
+        }
+        let clock = hours + ':' + mins;
+        console.log(clock)
     };
 
     start() {
         this.getCurrentFormattedTime();
-        this.timerId = setInterval()
+        this.temp = setInterval(() => this.getCurrentFormattedTime(), 1000);
+        this.addClock();
+        this._checkClock();
+
     };
 
-    _checkClock(time) {
-        if (time === output) {
-            return fn
+    _checkClock(alarmCollection) {
+        if (alarmCollection.time === this.getCurrentFormattedTime) {
+            setInterval(() => console.log('Пора вставать'), 1000);
+            setInterval(() => console.log('Давай, вставай уже!'), 1000);
+            setInterval(() => console.log('Вставай, а то проспишь!'), 1000);
         }
+    };
 
+    stop() {
+        clearInterval(this.temp)
+    }
+
+    printAlarms() {
+        return this.alarmCollection;
+    }
+
+    clearAlarms() {
+        clearInterval(this.alarmCollection)
     }
 }
 
-let phoneAlarm = new AlarmClock();
-console.log(getCurrentFormattedTime())
+const phoneAlarm = new AlarmClock();
+phoneAlarm.start();
+phoneAlarm.addClock('00:44', _checkClock(), 'Будильник №1');
+phoneAlarm.addClock('00:45', _checkClock(), 'Будильник №2');
+phoneAlarm.addClock('00:46', _checkClock(), 'Будильник №3');
+
+//console.log(addClock(
+ //   {time: '23:00', _checkClock: () => {}, id: 'Будильник №1'},
+ //   {time: '23:01', _checkClock: () => {}, id: 'Будильник №2'},
+ //   {time: '23:02', _checkClock: () => {}, id: 'Будильник №3'}
+//));
+
+/*Пора вставать
+Давай, вставай уже!
+Вставай, а то проспишь!*/
 
 
 
