@@ -48,8 +48,8 @@ class AlarmClock {
     _checkClock(time) {
         if (time === this.getCurrentFormattedTime) {
             setInterval(() => console.log('Пора вставать'), 1000);
-            setInterval(() => console.log('Давай, вставай уже!'), 1000);
-            setInterval(() => console.log('Вставай, а то проспишь!'), 1000);
+            setInterval(() => console.log('Давай, вставай уже!'), 2000);
+            setInterval(() => console.log('Вставай, а то проспишь!'), 3000);
         }
     };
 
@@ -75,11 +75,6 @@ phoneAlarm.addClock('00:45', _checkClock(), 'Будильник №2');
 phoneAlarm.addClock('00:46', _checkClock(), 'Будильник №3');
 
 
-//console.log(addClock(
- //   {time: '23:00', _checkClock: () => {}, id: 'Будильник №1'},
- //   {time: '23:01', _checkClock: () => {}, id: 'Будильник №2'},
- //   {time: '23:02', _checkClock: () => {}, id: 'Будильник №3'}
-//));
 
 /*Пора вставать
 Давай, вставай уже!
