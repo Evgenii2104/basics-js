@@ -7,13 +7,14 @@ class AlarmClock {
         this.temp = temp
     };
 
-    addClock(time, fn, id) {
+    addClock( time, fn, id) {
+        console.log()
         if (id === undefined) {
-            throw 'error text';
+            throw new Error('error text');
         } if (id === this.timerId) {
             console.error()
         } else {
-            this.alarmCollection.push({time, fn, id})
+            return this.alarmCollection.push({time, fn, id})
         }
 
     };
@@ -44,8 +45,8 @@ class AlarmClock {
 
     };
 
-    _checkClock(alarmCollection) {
-        if (alarmCollection.time === this.getCurrentFormattedTime) {
+    _checkClock(time) {
+        if (time === this.getCurrentFormattedTime) {
             setInterval(() => console.log('Пора вставать'), 1000);
             setInterval(() => console.log('Давай, вставай уже!'), 1000);
             setInterval(() => console.log('Вставай, а то проспишь!'), 1000);
@@ -66,10 +67,13 @@ class AlarmClock {
 }
 
 const phoneAlarm = new AlarmClock();
-phoneAlarm.start();
+phoneAlarm.start()
+
+
 phoneAlarm.addClock('00:44', _checkClock(), 'Будильник №1');
 phoneAlarm.addClock('00:45', _checkClock(), 'Будильник №2');
 phoneAlarm.addClock('00:46', _checkClock(), 'Будильник №3');
+
 
 //console.log(addClock(
  //   {time: '23:00', _checkClock: () => {}, id: 'Будильник №1'},
