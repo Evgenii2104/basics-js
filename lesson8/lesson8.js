@@ -1,26 +1,26 @@
 
 
 class AlarmClock {
-    constructor(temp) {
+    constructor() {
         this.alarmCollection = [{}];
         this.timerId = [];
-        this.temp = temp
+       // this.temp = temp
     };
 
-    addClock( time, fn, id) {
-        console.log()
-        if (id === undefined) {
-            throw new Error('error text');
-        } if (id === this.timerId) {
-            console.error()
-        } else {
-            return this.alarmCollection.push({time, fn, id})
+    addClock(id, time, calback) {
+        if (id === undefined || id === null) {
+            throw new Error('id не верный');
         }
-
+        
+        const hasId = this.alarmCollection.some(alarm => alarm.id === id);
+         if (hasId) {
+            throw new Error('звонок существует');
+        } 
+        this.alarmCollection.push({id, time, calback});
     };
 
     removeClock(id) {
-        return this.alarmCollection.shift(this.alarmCollection.filter(alarmCollection => alarmCollection.id = id));
+         this.alarmCollection = this.alarmCollection.filter(alarm => alarm.id !== id)
     };
 
     getCurrentFormattedTime() {
@@ -40,7 +40,7 @@ class AlarmClock {
     start() {
         this.getCurrentFormattedTime();
         this.temp = setInterval(() => this.getCurrentFormattedTime(), 1000);
-        this.addClock();
+        //this.addClock();
         this._checkClock();
 
     };
@@ -69,10 +69,16 @@ class AlarmClock {
 const phoneAlarm = new AlarmClock();
 phoneAlarm.start()
 
-
-phoneAlarm.addClock('00:44', _checkClock(), 'Будильник №1');
-phoneAlarm.addClock('00:45', _checkClock(), 'Будильник №2');
-phoneAlarm.addClock('00:46', _checkClock(), 'Будильник №3');
+phoneAlarm.addClock('Будильник №1', '00:44', () => {});
+phoneAlarm.addClock('Будильник №2', '00:45', () => {});
+phoneAlarm.addClock('Будильник №3', '00:46', () => {});
+phoneAlarm.addClock('Будильник №4', '00:47', () => {});
+phoneAlarm.addClock('Будильник №5', '00:48', () => {});
+console.log(phoneAlarm.alarmCollection);
+phoneAlarm.removeClock('Будильник №4');
+console.log(phoneAlarm.alarmCollection);
+phoneAlarm.removeClock('Будильник №5');
+console.log(phoneAlarm.alarmCollection);
 
 
 
