@@ -23,7 +23,7 @@ class AlarmClock {
     };
 
     getCurrentFormattedTime() {
-        let date = new Date()
+        const date = new Date()
         let hours = date.getHours().toString();
         let mins = date.getMinutes().toString();
         if (hours.length < 2) {
