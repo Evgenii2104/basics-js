@@ -4,7 +4,6 @@ class AlarmClock {
     constructor() {
         this.alarmCollection = [];
         this.timerId = [];
-       // this.temp = temp
     };
 
     addClock(id, time, calback) {
@@ -63,7 +62,7 @@ class AlarmClock {
 
     printAlarms() {
         this.alarmCollection.forEach(alarm => {
-            console.log(alarm.time, alarm.id)
+            console.log(alarm.time, alarm.id, alarm.calback)
         })
     }
 
@@ -76,11 +75,11 @@ class AlarmClock {
 const phoneAlarm = new AlarmClock();
 phoneAlarm.start()
 
-phoneAlarm.addClock('Будильник №1', '16:00', () => {});
-phoneAlarm.addClock('Будильник №2', '16:01', () => {});
-phoneAlarm.addClock('Будильник №3', '16:02', () => {});
-phoneAlarm.addClock('Будильник №4', '16:03', () => {});
-phoneAlarm.addClock('Будильник №5', '16:04', () => {});
+phoneAlarm.addClock('Будильник №1', '16:06', () => {console.log('Пора вставать')});
+phoneAlarm.addClock('Будильник №2', '16:07', () => {console.log('Давай, вставай уже!')});
+phoneAlarm.addClock('Будильник №3', '16:08', () => {console.log('Вставай, а то проспишь!')});
+phoneAlarm.addClock('Будильник №4', '16:09', () => {});
+phoneAlarm.addClock('Будильник №5', '16:10', () => {});
 console.log(phoneAlarm.alarmCollection);
 phoneAlarm.removeClock('Будильник №4');
 console.log(phoneAlarm.alarmCollection);
