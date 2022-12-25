@@ -2,7 +2,7 @@
 
 class AlarmClock {
     constructor() {
-        this.alarmCollection = [{}];
+        this.alarmCollection = [];
         this.timerId = [];
        // this.temp = temp
     };
@@ -33,52 +33,65 @@ class AlarmClock {
         if (mins.length < 2) {
             mins = '0' + mins;
         }
-        let clock = hours + ':' + mins;
-        console.log(clock)
+        return (hours + ':' + mins);
+        
     };
 
     start() {
-        this.getCurrentFormattedTime();
-        this.temp = setInterval(() => this.getCurrentFormattedTime(), 1000);
-        //this.addClock();
-        this._checkClock();
+        if (this.timerId !== undefined && this.timerId !== null) {
+            this.timerId = setInterval(() => {
+                this.alarmCollection.forEach(alarm => {
+                    this._checkClock(alarm)
+                })
+            }, 6000)
+        } else {
+            throw new Error('звонок запущен');
+        }
 
     };
 
-    _checkClock(time) {
-        if (time === this.getCurrentFormattedTime) {
-            setInterval(() => console.log('Пора вставать'), 1000);
-            setInterval(() => console.log('Давай, вставай уже!'), 2000);
-            setInterval(() => console.log('Вставай, а то проспишь!'), 3000);
+    _checkClock(alarm) {
+        if (alarm.time === this.getCurrentFormattedTime) {
+            alarm.calback()
         }
     };
 
     stop() {
-        clearInterval(this.temp)
+        if (!this.timerId) {
+        clearInterval(this.timerId)}
     }
 
     printAlarms() {
-        return this.alarmCollection;
+        this.alarmCollection.forEach(alarm => {
+            console.log(alarm.time, alarm.id)
+        })
     }
 
     clearAlarms() {
-        clearInterval(this.alarmCollection)
+        if (this.timerId === undefined)
+        this.alarmCollection = []
     }
 }
 
 const phoneAlarm = new AlarmClock();
 phoneAlarm.start()
 
-phoneAlarm.addClock('Будильник №1', '00:44', () => {});
-phoneAlarm.addClock('Будильник №2', '00:45', () => {});
-phoneAlarm.addClock('Будильник №3', '00:46', () => {});
-phoneAlarm.addClock('Будильник №4', '00:47', () => {});
-phoneAlarm.addClock('Будильник №5', '00:48', () => {});
+phoneAlarm.addClock('Будильник №1', '16:00', () => {});
+phoneAlarm.addClock('Будильник №2', '16:01', () => {});
+phoneAlarm.addClock('Будильник №3', '16:02', () => {});
+phoneAlarm.addClock('Будильник №4', '16:03', () => {});
+phoneAlarm.addClock('Будильник №5', '16:04', () => {});
 console.log(phoneAlarm.alarmCollection);
 phoneAlarm.removeClock('Будильник №4');
 console.log(phoneAlarm.alarmCollection);
 phoneAlarm.removeClock('Будильник №5');
 console.log(phoneAlarm.alarmCollection);
+phoneAlarm.start();
+phoneAlarm.printAlarms()
+
+
+
+
 
 
 
