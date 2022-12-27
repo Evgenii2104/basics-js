@@ -97,11 +97,132 @@ console.log(phoneAlarm.timerId)
 
 
 
+/*const a = true === 1;
+const b = ':' === 2;
+const c = 'женя' && 2 && [];
+
+function getCloys (temp) {
+    if (temp === undefined || isNaN(temp)) {
+        return 'не число'
+    }
+    let res = null
+    if (temp < 0) {
+        res = 'одевай куртку';
+    } else if (temp >= 0 && temp < 10) {
+        res = 'одень палто';
+    } else { 
+        res = 'одевай плавки';
+    } 
+    return res
+};
+
+console.log(getCloys('2'));*/
+
+/*const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const newItems = [];
+
+for (let i = 0; i < items.length; i++) {
+    if (i % 2 !== 0) {
+         newItems.push(items[i])
+    }
+}
+console.log(newItems)*/
+
+/*function calcAvgOfThird(items) {
+    let sum = 0;
+    let avg = 0;
+    let count = 0;
+    let i = 2;
+    while ( i < items.length) {
+        sum += items[i];
+        count++
+        i += 3
+    } 
+    avg = sum / count
+    return avg
+  }
+
+  console.log(calcAvgOfThird([1, 4, 5, 8]));
+  console.log(calcAvgOfThird([15, 18, 32, 56, 78, 81, 83, 86]));
+  console.log(calcAvgOfThird([54, 3, 54, 123, 55, 23, 65, 1, 88]));*/
+
+  const countries = {
+    georgia: {
+      area: 210,
+      population: 200000,
+      continent: 'asia'
+    },
+    romania: {
+      area: 245,
+      population: 130000,
+      continent: 'europe'
+    },
+    mexico: {
+      area: 12,
+      population: 54000,
+      continent: 'america'
+    },
+    france: {
+      area: 876,
+      population: 567000,
+      continent: 'europe'
+    },
+    canada: {
+      area: 56,
+      population: 89000,
+      continent: 'america'
+    }
+  };
+  
+  // Реализовать функцию calcAreaSum, которая:
+  // - принимает 1 аргумент – объект стран (объект приведен выше)
+  // - считает сумму площадей всех стран
+  // Для перебора объекта использовать любые доступные способы
+  // (статьи по теме: https://learn.javascript.ru/object, https://learn.javascript.ru/keys-values-entries,
+  // https://learn.javascript.ru/while-for, https://learn.javascript.ru/array-methods
+  console.log(countries)
+  function calcAreaSum(countries) {
+    let sum = 0;
+    for (let countr of Object.keys(countries)) {
+        let ar = countr.map(item => item.area)
+
+console.log(ar)
+
+        for (let i = 0; i < countr.length; i++) {
+            //console.log(i)
+            sum += countr.length[i]
+        }
+    } //return sum
+
+    //const areaSum = countries.map(item => item.area > 0).reduce((sum, items) => sum + items, 0)
+    //return areaSum
+  } 
+  
+
+  console.log(calcAreaSum(countries)); // 1399
+  
+  // Реализовать функцию calcPopulationSumByContinents, которая:
+  // - принимает 1 аргумент – объект стран (объект приведен выше)
+  // - считает сумму населения на каждом из континентов
+  // Для перебора объекта использовать любые доступные способы
+  // (статьи по теме: https://learn.javascript.ru/object, https://learn.javascript.ru/keys-values-entries,
+  // https://learn.javascript.ru/while-for, https://learn.javascript.ru/array-methods
+  
+  //function calcPopulationSumByContinents(countries) {
+    // ...
+  //}
+  
+  // console.log(calcPopulationSumByContinents(countries)); // { asia: 200000, europe: 697000, america: 143000 }
+  
 
 
-/*Пора вставать
-Давай, вставай уже!
-Вставай, а то проспишь!*/
+
+
+
+
+
+
+
 
 
 
