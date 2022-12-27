@@ -180,25 +180,17 @@ console.log(newItems)*/
   // Для перебора объекта использовать любые доступные способы
   // (статьи по теме: https://learn.javascript.ru/object, https://learn.javascript.ru/keys-values-entries,
   // https://learn.javascript.ru/while-for, https://learn.javascript.ru/array-methods
-  console.log(countries)
+  //console.log(countries)
   function calcAreaSum(countries) {
     let sum = 0;
-    for (let countr of Object.keys(countries)) {
-        let ar = countr.map(item => item.area)
+    const key = Object.values(countries);
 
-console.log(ar)
-
-        for (let i = 0; i < countr.length; i++) {
-            //console.log(i)
-            sum += countr.length[i]
-        }
-    } //return sum
-
-    //const areaSum = countries.map(item => item.area > 0).reduce((sum, items) => sum + items, 0)
-    //return areaSum
+    for (let i = 0; i < key.length; i++) {
+        sum += key[i].area
+    }
+    return sum
   } 
   
-
   console.log(calcAreaSum(countries)); // 1399
   
   // Реализовать функцию calcPopulationSumByContinents, которая:
@@ -208,11 +200,27 @@ console.log(ar)
   // (статьи по теме: https://learn.javascript.ru/object, https://learn.javascript.ru/keys-values-entries,
   // https://learn.javascript.ru/while-for, https://learn.javascript.ru/array-methods
   
-  //function calcPopulationSumByContinents(countries) {
-    // ...
-  //}
+  function calcPopulationSumByContinents(countries) {
+    const key = Object.values(countries);
+    console.log(key);
+    let res = {};
+    for (let i = 0; i < key.length; i++) {
+        if (key) 
+            res.push(key.continent)
+            console.log(key)
+        
+    }
+    //let pop = key.map(p => ({
+       //console.log(`${p.continent}`: `${p.population}`)
+    //}))
+    //return pop
+    //return key.map((obj, value) => {
+       // obj[value.population] = value;
+        //return obj;
+     // }, {})
+  }
   
-  // console.log(calcPopulationSumByContinents(countries)); // { asia: 200000, europe: 697000, america: 143000 }
+   console.log(calcPopulationSumByContinents(countries)); // { asia: 200000, europe: 697000, america: 143000 }
   
 
 
