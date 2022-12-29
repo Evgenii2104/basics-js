@@ -202,14 +202,25 @@ console.log(newItems)*/
   
   function calcPopulationSumByContinents(countries) {
     const key = Object.values(countries);
+    
     const res = key.reduce((total, arr) => {
         return { 
             ...total,
-            [arr.continent]: arr.population,
+            [arr.continent]: 0,
          }
-    }, {})
-    console.log(res);
-    
+    }, {}) 
+
+    for (let continent of Object.values(key)) {
+
+        for (let k of  Object.keys(res)) {
+                
+            if (continent.continent === k) {
+            
+                res[k] += continent.population
+
+            }
+        }
+    }
     return res
   }
   
