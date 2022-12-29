@@ -202,22 +202,15 @@ console.log(newItems)*/
   
   function calcPopulationSumByContinents(countries) {
     const key = Object.values(countries);
-    console.log(key);
-    let res = {};
-    for (let i = 0; i < key.length; i++) {
-        if (key) 
-            res.push(key.continent)
-            console.log(key)
-        
-    }
-    //let pop = key.map(p => ({
-       //console.log(`${p.continent}`: `${p.population}`)
-    //}))
-    //return pop
-    //return key.map((obj, value) => {
-       // obj[value.population] = value;
-        //return obj;
-     // }, {})
+    const res = key.reduce((total, arr) => {
+        return { 
+            ...total,
+            [arr.continent]: arr.population,
+         }
+    }, {})
+    console.log(res);
+    
+    return res
   }
   
    console.log(calcPopulationSumByContinents(countries)); // { asia: 200000, europe: 697000, america: 143000 }
