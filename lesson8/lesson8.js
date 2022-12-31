@@ -217,7 +217,6 @@ console.log(newItems)*/
             if (continent.continent === k) {
             
                 res[k] += continent.population
-
             }
         }
     }
@@ -226,6 +225,16 @@ console.log(newItems)*/
   
    console.log(calcPopulationSumByContinents(countries)); // { asia: 200000, europe: 697000, america: 143000 }
   
+   function filterNames(namesStr, filterStr) {
+    let str = namesStr.toLowerCase().split(', ');
+    let name = str.filter((el) => el.includes(filterStr.toLowerCase()));
+    let res = name.map((x) => x[0].toUpperCase() + x.slice(1)).join(' ')
+
+    return res
+  }
+  
+  console.log(filterNames('Eric, Ethan, Frederic, Ernest', 'er')); // 'Eric,Ernest'
+  console.log(filterNames('Harold, Joseph, Harry, Joshua, Oscar', 'Os')); // 'Joseph,Joshua,Oscar'
 
 
 
