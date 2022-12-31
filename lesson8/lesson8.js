@@ -228,7 +228,7 @@ console.log(newItems)*/
    function filterNames(namesStr, filterStr) {
     let str = namesStr.toLowerCase().split(', ');
     let name = str.filter((el) => el.includes(filterStr.toLowerCase()));
-    let res = name.map((x) => x[0].toUpperCase() + x.slice(1)).join(' ')
+    let res = name.map((x) => x[0].toUpperCase() + x.slice(1)).join(', ')
 
     return res
   }
