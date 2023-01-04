@@ -245,10 +245,6 @@ console.log(newItems)*/
     } else {
         return false
     }
-
-
-    //console.log(origiStr)
-    
   }
   
    console.log(isPalindrome('Леша на полке клопа нашел')); // true
