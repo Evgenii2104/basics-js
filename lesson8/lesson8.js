@@ -237,6 +237,23 @@ console.log(newItems)*/
   console.log(filterNames('Harold, Joseph, Harry, Joshua, Oscar', 'Os')); // 'Joseph,Joshua,Oscar'
 
 
+  function isPalindrome(str) {
+    let origiStr = str.replace(/\s+/g, "").toLowerCase();
+    let remStr = origiStr.split('').reverse().join('');
+    if (origiStr === remStr) {
+        return true
+    } else {
+        return false
+    }
+
+
+    //console.log(origiStr)
+    
+  }
+  
+   console.log(isPalindrome('Леша на полке клопа нашел')); // true
+   console.log(isPalindrome('Аргентина манит негра')); // true
+   console.log(isPalindrome('В саду растут яблоки')); // false
 
 
 
