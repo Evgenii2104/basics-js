@@ -89,7 +89,8 @@ console.log(phoneAlarm.alarmCollection);
 phoneAlarm.start();
 phoneAlarm.printAlarms()
 phoneAlarm.stop();
-console.log(phoneAlarm.timerId)
+console.log(phoneAlarm.timerId);
+
 
 
 
@@ -255,6 +256,90 @@ console.log(newItems)*/
 
 
 
+   // === ПЕРВАЯ ЧАСТЬ ЗАДАНИЯ ===
+
+
+
+class Car {
+    constructor(fuelCapacity, fuelAvailability, fuelRate) {
+        this.fuelCapacity = fuelCapacity;  //количество литров топлива, которое вмещает бак
+        this.fuelAvailability = fuelAvailability;  //количество литров топлива, которое в данный момент находится в баке;
+        this.fuelRate = fuelRate;  //количество литров топлива, которое тратит машина в 1 секунду;
+        this.idi = null;
+    }
+    start() {
+        if (this.fuelAvailability >= 0) {
+         this.idi = setInterval(() => {
+              this.fuelAvailability = this.fuelAvailability - this.fuelRate 
+              console.log('двигатель запущен');
+              //console.log(this.idi)
+              if (this.fuelAvailability <= 0) {
+                clearInterval(this.idi)
+                console.log('двигатель остановлен')
+              } 
+            }, 1000)
+        } else {
+            console.log('двигатель остановлен')
+        }
+    }
+    stop() {
+        clearInterval(this.idi)
+        console.log('двигатель остановлен')
+    }
+    startBySchedule(seconds) {
+        let crug = 0;
+        if (this.fuelAvailability >= 0) {
+            this.idi = setInterval(() => {
+                 this.fuelAvailability = this.fuelAvailability - this.fuelRate 
+                 console.log('двигатель запущен');
+                 crug++
+                 if (crug >= seconds || this.fuelAvailability <= 0) {
+                   console.log('двигатель остановлен')
+                   clearInterval(this.idi)
+                 }
+               }, 1000)
+           } else {
+               console.log('двигатель остановлен')
+           }
+    }
+    isStarted() {
+        if (this.idi >= 0) {
+            return true 
+        } else {
+            return false 
+        }
+
+    }
+    refuel(fuel) {
+        this.fuelAvailability = this.fuelAvailability + fuel;
+        if (this.fuelAvailability > this.fuelCapacity) {
+            this.fuelAvailability = this.fuelCapacity;
+        }
+    }
+}
+
+ const car = new Car(10, 8, 2); // описание параметров: fuelCapacity = 10, fuelAvailability = 8, fuelRate = 2
+ car.startBySchedule(3); // запускаем двигатель на 3 секунды
+ console.log(car.isStarted()); // true (двигатель запущен)
+ //console.log(car.fuelAvailability, car.fuelRate, car.fuelCapacity, car.idi)
+ setTimeout(() => {
+   console.log(car.fuelAvailability); // количество топлива (fuelAvailability) должно стать равно 2
+   console.log(car.isStarted()); // false (двигатель остановлен)
+   car.refuel(20); // дозаправляем автомобиль на 20 литров
+   console.log(car.fuelAvailability); // количество топлива (fuelAvailability) должно стать равно 10 (полный бак)
+   car.start(); // запускаем двигатель автомобиля
+   console.log(car.isStarted()); // true (двигатель запущен)
+   setTimeout(() => {
+     car.stop(); // останавливаем двигатель автомобиля
+     console.log(car.isStarted()); // false (двигатель остановлен)
+     console.log(car.fuelAvailability); // количество топлива (fuelAvailability) должно стать равно 6
+   }, 2000);
+ }, 4000);
+ 
+setTimeout(() => {
+    console.log(car.idi)
+}, 10000)    
+ 
 
 
 
@@ -275,7 +360,10 @@ console.log(newItems)*/
 
 
 
-/*class AlarmClock {
+
+
+
+/*class AlarmClocks {
     constructor({temp}) {
         this.alarmCollection = [];
         this.timerId = null;
@@ -318,5 +406,7 @@ console.log(newItems)*/
 
 
 let count = 0;
-const phoneAlarm = new AlarmClock({temp: 'hh:mm:ss'});
-phoneAlarm.start();*/
+const phoneAlarma = new AlarmClocks({temp: 'hh:mm:ss'});
+phoneAlarma.start();
+phoneAlarma.stop();
+console.log(phoneAlarma.timer)*/
