@@ -265,18 +265,19 @@ class Car {
         this.fuelCapacity = fuelCapacity;  //количество литров топлива, которое вмещает бак
         this.fuelAvailability = fuelAvailability;  //количество литров топлива, которое в данный момент находится в баке;
         this.fuelRate = fuelRate;  //количество литров топлива, которое тратит машина в 1 секунду;
-        this.idi = null;
+        this.idi = 0;
     }
     start() {
-        if (this.fuelAvailability >= 0) {
-         this.idi = setInterval(() => {
+          if (this.fuelAvailability >= 0) {
+            this.idi = setInterval(() => {
+            if ((this.fuelAvailability - this.fuelRate) > 0) {
               this.fuelAvailability = this.fuelAvailability - this.fuelRate 
               console.log('двигатель запущен');
               //console.log(this.idi)
               if (this.fuelAvailability <= 0) {
-                clearInterval(this.idi)
-                console.log('двигатель остановлен')
+                this.stop()
               } 
+            }
             }, 1000)
         } else {
             console.log('двигатель остановлен')
@@ -284,29 +285,19 @@ class Car {
     }
     stop() {
         clearInterval(this.idi)
+        this.idi = 0
         console.log('двигатель остановлен')
     }
     startBySchedule(seconds) {
-        let crug = 0;
-        if (this.fuelAvailability >= 0) {
-            this.idi = setInterval(() => {
-                 this.fuelAvailability = this.fuelAvailability - this.fuelRate 
-                 console.log('двигатель запущен');
-                 crug++
-                 if (crug >= seconds || this.fuelAvailability <= 0) {
-                   console.log('двигатель остановлен')
-                   clearInterval(this.idi)
-                 }
-               }, 1000)
-           } else {
-               console.log('двигатель остановлен')
-           }
+       this.start()
+       setTimeout(() => {this.stop()}, seconds * 1000)
+    
     }
     isStarted() {
-        if (this.idi >= 0) {
-            return true 
+        if (this.idi > 0) {
+            return 'true (двигатель запущен)' 
         } else {
-            return false 
+            return 'false (двигатель остановлен)' 
         }
 
     }
@@ -335,10 +326,6 @@ class Car {
      console.log(car.fuelAvailability); // количество топлива (fuelAvailability) должно стать равно 6
    }, 2000);
  }, 4000);
- 
-setTimeout(() => {
-    console.log(car.idi)
-}, 10000)    
  
 
 
