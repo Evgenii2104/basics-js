@@ -295,9 +295,9 @@ class Car {
     }
     isStarted() {
         if (this.idi > 0) {
-            return 'true (двигатель запущен)' 
+            return !!this.idi
         } else {
-            return 'false (двигатель остановлен)' 
+            return !!this.idi 
         }
 
     }
@@ -310,7 +310,7 @@ class Car {
 }
 
  const car = new Car(10, 8, 2); // описание параметров: fuelCapacity = 10, fuelAvailability = 8, fuelRate = 2
- car.startBySchedule(3); // запускаем двигатель на 3 секунды
+ /*car.startBySchedule(3); // запускаем двигатель на 3 секунды
  console.log(car.isStarted()); // true (двигатель запущен)
  //console.log(car.fuelAvailability, car.fuelRate, car.fuelCapacity, car.idi)
  setTimeout(() => {
@@ -325,9 +325,69 @@ class Car {
      console.log(car.isStarted()); // false (двигатель остановлен)
      console.log(car.fuelAvailability); // количество топлива (fuelAvailability) должно стать равно 6
    }, 2000);
- }, 4000);
+ }, 4000);*/
  
 
+
+
+ // === ВТОРАЯ ЧАСТЬ ЗАДАНИЯ ===
+
+
+
+ class Truck extends Car {
+    constructor(fuelCapacity, fuelAvailability, fuelRate, loadCapacity, idi) {
+        super(fuelCapacity, fuelAvailability, fuelRate, idi);
+        this.loadCapacity = loadCapacity;  //сколько килограмм груза может перевозить грузовик
+        this.loadOccupancy = 0; //сколько килограмм груза сейчас находится в грузовике (по умолчанию равно 0)
+    }
+    load(weight) {
+        this.loadOccupancy = this.loadOccupancy + weight;
+        if (this.loadOccupancy > this.loadCapacity) {
+            this.loadOccupancy = this.loadCapacity
+        }
+    }
+    start() {
+        if (this.fuelAvailability >= 0) {
+            this.idi = setInterval(() => {
+            if ((this.fuelAvailability - this.fuelRate) > 0) {
+                if (this.loadOccupancy <= 0) {
+                    this.fuelAvailability = this.fuelAvailability - this.fuelRate
+                } else {
+                this.fuelAvailability = this.fuelAvailability - (this.fuelRate + ((this.fuelRate * this.loadOccupancy) / this.loadCapacity)) 
+              console.log('двигатель запущен');
+              //console.log(this.idi)
+                }
+              if (this.fuelAvailability <= 0) {
+                super.stop()
+              } 
+            }
+            }, 1000)
+        } else {
+            console.log('двигатель остановлен')
+        }
+    }
+
+  }
+
+   const truck = new Truck(20, 18, 2, 10); // описание параметров: fuelCapacity = 20, fuelAvailability = 18, fuelRate = 2, loadCapacity = 10
+console.log(truck.loadOccupancy); // грузовик пустой (loadOccupancy = 0)
+ truck.startBySchedule(3); // запускаем двигатель на 3 секунды (каждую секунду мы будем тратить по 2 литра топлива)
+console.log(truck.isStarted()); // true (двигатель запущен)
+ setTimeout(() => {
+   console.log(truck.fuelAvailability); // количество топлива (fuelAvailability) должно стать равно 12
+   console.log(truck.isStarted()); // false (двигатель остановлен)
+   truck.refuel(5); // дозаправляем автомобиль на 5 литров
+   console.log(truck.fuelAvailability); // количество топлива (fuelAvailability) должно стать равно 17
+   truck.load(2); // загружам грузовик товаром
+   console.log(truck.loadOccupancy); // грузовик загружен (loadOccupancy = 2)
+   truck.load(3); // загружам грузовик товаром
+   console.log(truck.loadOccupancy); // грузовик загружен (loadOccupancy = 5)
+   truck.startBySchedule(3); // запускаем двигатель на 3 секунды (каждую секунду мы будем тратить по 3 литра топлива, потому что грузовик загружен на 5 из 10)
+   setTimeout(() => {
+     console.log(truck.fuelAvailability); // количество топлива (fuelAvailability) должно стать равно 8
+     console.log(truck.isStarted()); // false (двигатель остановлен)
+   }, 4000);
+ }, 4000);
 
 
 
